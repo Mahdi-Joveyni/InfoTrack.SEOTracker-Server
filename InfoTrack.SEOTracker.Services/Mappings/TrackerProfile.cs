@@ -8,7 +8,8 @@ namespace InfoTrack.SEOTracker.Services.Mappings
    {
       public TrackerProfile()
       {
-         CreateMap<TrackerDto, Tracker>();
+         CreateMap<TrackerHistoryDto, TrackerHistory>().ReverseMap();
+         CreateMap<TrackerDto, Tracker>().ReverseMap();
       }
    }
 }

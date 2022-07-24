@@ -33,10 +33,10 @@ namespace InfoTrack.SEOTracker.Data.Repositories
       }
 
 
-      public async Task<List<TrackerDto>> GetTrackers()
+      public async Task<List<TrackerDetail>> GetTrackers()
       {
          // To-Do add Pagination
-         return await _dBContext.Trackers.Include(t => t.Histories).Select(t => new TrackerDto()
+         return await _dBContext.Trackers.Include(t => t.Histories).Select(t => new TrackerDetail()
          {
             Id = t.Id,
             Search = t.Search,

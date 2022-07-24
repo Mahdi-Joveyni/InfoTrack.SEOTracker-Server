@@ -1,4 +1,6 @@
-﻿using InfoTrack.SEOTracker.Data.Repositories.Interfaces;
+﻿using AutoMapper;
+using InfoTrack.SEOTracker.Data.Repositories.Interfaces;
+using InfoTrack.SEOTracker.Domain.DTO;
 using InfoTrack.SEOTracker.Services;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -11,10 +13,12 @@ namespace InfoTrack.SEOTracker.Api.Controllers
    public class TrackerController : ControllerBase
    {
       private readonly ILogger _logger;
+      private readonly IMapper _mapper;
 
-      public TrackerController(ILogger logger)
+      public TrackerController(ILogger logger, IMapper mapper)
       {
          _logger = logger;
+         _mapper = mapper;
       }
 
       [HttpGet]
@@ -26,7 +30,7 @@ namespace InfoTrack.SEOTracker.Api.Controllers
       [HttpGet("history")]
       public async Task<IActionResult> GetAllHistory([FromServices] ITrackerRepository trackerRepostory, int id)
       {
-         return Ok(await trackerRepostory.GetTrackerByHistories(id));
+         return Ok(_mapper.Map<TrackerDto>(await trackerRepostory.GetTrackerByHistories(id)));
       }
 
 

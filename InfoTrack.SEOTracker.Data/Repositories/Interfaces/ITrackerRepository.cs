@@ -8,7 +8,7 @@ namespace InfoTrack.SEOTracker.Data.Repositories.Interfaces
    public interface ITrackerRepository
    {
       Task AddNewTracker(Tracker request, List<int> ranks);
-      Task<List<TrackerDto>> GetTrackers();
+      Task<List<TrackerDetail>> GetTrackers();
       Task<Tracker> GetTrackerByHistories(int trackerId);
    }
 }

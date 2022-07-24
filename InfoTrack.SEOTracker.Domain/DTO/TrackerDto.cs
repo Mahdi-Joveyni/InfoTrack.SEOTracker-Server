@@ -1,4 +1,9 @@
-﻿using System;
+﻿using InfoTrack.SEOTracker.Domain.Enumerations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace InfoTrack.SEOTracker.Domain.DTO
 {
@@ -7,7 +12,8 @@ namespace InfoTrack.SEOTracker.Domain.DTO
       public int Id { get; set; }
       public string Search { get; set; }
       public string Url { get; set; }
-      public string LastRank { get; set; }
-      public DateTime LastDateTime { get; set; }
+      public EngineType EngineType { get; set; }
+
+      public ICollection<TrackerHistoryDto> Histories { get; set; }
    }
 }
