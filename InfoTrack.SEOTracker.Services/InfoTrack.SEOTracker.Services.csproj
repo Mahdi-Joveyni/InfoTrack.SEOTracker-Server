@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="11.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+		<PackageReference Include="Serilog" Version="2.10.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\InfoTrack.SEOTracker.Data\InfoTrack.SEOTracker.Data.csproj" />
+		<ProjectReference Include="..\InfoTrack.SEOTracker.Domain\InfoTrack.SEOTracker.Domain.csproj" />
+	</ItemGroup>
+
+</Project>
