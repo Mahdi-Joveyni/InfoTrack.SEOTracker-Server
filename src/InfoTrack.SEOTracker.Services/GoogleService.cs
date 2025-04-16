@@ -1,11 +1,9 @@
 ﻿using InfoTrack.SEOTracker.Data.Interfaces;
 using InfoTrack.SEOTracker.Data.Models;
-using InfoTrack.SEOTracker.Domain.DTO;
 using InfoTrack.SEOTracker.Domain.Enumerations;
 using InfoTrack.SEOTracker.Services.Interfaces;
 using InfoTrack.SEOTracker.Utilities.Appsettings;
 using Microsoft.Extensions.Options;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 

@@ -1,5 +1,4 @@
 ﻿using Mongo2Go;
-using Xunit;
 
 namespace InfoTrack.SEOTracker.Data.Tests;
 public class MongoDbFixture : IAsyncLifetime

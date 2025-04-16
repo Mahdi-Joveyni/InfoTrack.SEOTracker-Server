@@ -1,11 +1,11 @@
-﻿using InfoTrack.SEOTracker.Utilities.Appsettings;
+﻿using InfoTrack.SEOTracker.Services.Interfaces;
+using InfoTrack.SEOTracker.Utilities.Appsettings;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.Options;
-using Mongo2Go;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using InfoTrack.SEOTracker.Services.Interfaces;
+using Microsoft.Extensions.Options;
+using Mongo2Go;
 using Moq;
 
 namespace InfoTrack.SEOTracker.Api.Tests;

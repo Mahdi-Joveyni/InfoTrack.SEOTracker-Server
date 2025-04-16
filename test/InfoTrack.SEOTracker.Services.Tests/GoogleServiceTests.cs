@@ -3,12 +3,7 @@ using InfoTrack.SEOTracker.Data.Models;
 using InfoTrack.SEOTracker.Services.Interfaces;
 using InfoTrack.SEOTracker.Utilities.Appsettings;
 using Microsoft.Extensions.Options;
-using MongoDB.Bson;
 using Moq;
-using Moq.Protected;
-using RichardSzalay.MockHttp;
-using System.Linq.Expressions;
-using System.Net;
 
 namespace InfoTrack.SEOTracker.Services.Tests;
 

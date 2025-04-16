@@ -1,10 +1,10 @@
-﻿using InfoTrack.SEOTracker.Services.Interfaces;
+﻿using InfoTrack.SEOTracker.Data.Dependencies;
+using InfoTrack.SEOTracker.Services.Interfaces;
+using InfoTrack.SEOTracker.Utilities.Appsettings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using InfoTrack.SEOTracker.Data.Dependencies;
-using Serilog.Events;
 using Serilog;
-using InfoTrack.SEOTracker.Utilities.Appsettings;
+using Serilog.Events;
 
 namespace InfoTrack.SEOTracker.Services.Dependencies;
 

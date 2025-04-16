@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace InfoTrack.SEOTracker.Services.Interfaces;
+﻿namespace InfoTrack.SEOTracker.Services.Interfaces;
 
 public interface ISearchEngingService
 {

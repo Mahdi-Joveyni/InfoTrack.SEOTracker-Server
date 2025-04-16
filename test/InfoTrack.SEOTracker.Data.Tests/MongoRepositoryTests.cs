@@ -5,10 +5,8 @@ using InfoTrack.SEOTracker.Data.Repositories;
 using InfoTrack.SEOTracker.Domain;
 using InfoTrack.SEOTracker.Utilities.Appsettings;
 using Microsoft.Extensions.Options;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using System.ComponentModel;
-using System.Security.Claims;
 
 namespace InfoTrack.SEOTracker.Data.Tests;
 public class MongoRepositoryTests : BaseTest

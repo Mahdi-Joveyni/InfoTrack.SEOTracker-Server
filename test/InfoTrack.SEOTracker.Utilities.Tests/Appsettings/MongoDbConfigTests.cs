@@ -1,6 +1,5 @@
 ﻿using InfoTrack.SEOTracker.Utilities.Appsettings;
 using InfoTrack.SEOTracker.Utilities.Helpers;
-using System.Text;
 
 namespace InfoTrack.SEOTracker.Utilities.Tests.Appsettings;
 public class MongoDbConfigTests
