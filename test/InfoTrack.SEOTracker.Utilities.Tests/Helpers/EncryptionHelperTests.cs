@@ -1,0 +1,72 @@
+﻿using InfoTrack.SEOTracker.Utilities.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InfoTrack.SEOTracker.Utilities.Tests.Helpers;
+public class EncryptionHelperTests
+{
+   [Fact]
+   public void Encrypt_ShouldReturnEncryptedString()
+   {
+      // Arrange
+      var plainText = "Hello World!";
+      EncryptionHelper.Key = "L/mOvgSkEwIx6cU00TaSRO6TbAoONVV+XN+Yr3/xXRk=";
+      // Act
+      var encryptedText = plainText.EncryptObject();
+
+      // Act
+      var decryptedText = encryptedText.DecryptObject();
+
+      // Assert
+      Assert.NotNull(decryptedText);
+      Assert.Equal(plainText, decryptedText);
+
+      // Assert
+      Assert.NotNull(encryptedText);
+      Assert.NotEqual(plainText, encryptedText);
+   }
+
+   [Fact]
+   public void Decrypt_ShouldReturnOriginalString()
+   {
+      // Arrange
+      var plainText = "Hello World!";
+      var key = "L/mOvgSkEwIx6cU00TaSRO6TbAoONVV+XN+Yr3/xXRk="; // 16-byte key
+      var encryptedText = plainText.Encrypt(key);
+
+      // Act
+      var decryptedText = encryptedText.Decrypt(key);
+
+      // Assert
+      Assert.NotNull(decryptedText);
+      Assert.Equal(plainText, decryptedText);
+   }
+
+   [Fact]
+   public void EncryptObject_ShouldThrowException_WhenKeyIsEmpty()
+   {
+      // Arrange
+      EncryptionHelper.Key = string.Empty;
+      var plainText = "Hello World!";
+
+      // Act & Assert
+      Assert.Throws<ArgumentNullException>(() => plainText.EncryptObject());
+   }
+
+   [Fact]
+   public void DecryptObject_ShouldReturnNull_WhenDecryptionFails()
+   {
+      // Arrange
+      EncryptionHelper.Key = Convert.ToBase64String(Encoding.UTF8.GetBytes("1234567890123456")); // 16-byte key
+      var invalidEncryptedText = "InvalidEncryptedText";
+
+      // Act
+      var result = invalidEncryptedText.DecryptObject();
+
+      // Assert
+      Assert.Null(result);
+   }
+}
