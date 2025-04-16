@@ -42,7 +42,7 @@ public class TrackerServiceTests
       var service = new TrackerService(mockRepository.Object);
 
       // Act
-      var result = await service.GetAllTracker(dataTableRequest);
+      var result = await service.GetAllTracker(dataTableRequest, TestContext.Current.CancellationToken);
 
       // Assert
       Assert.NotNull(result);
@@ -52,5 +52,63 @@ public class TrackerServiceTests
       Assert.Equal("Test Search 1", result.Items[0].Search);
       Assert.Equal("http://example1.com", result.Items[0].Url);
       Assert.Equal(EngineType.Google, result.Items[0].EngineType);
+   }
+
+   [Fact]
+   public async Task GetByKey_ShouldReturnTrackerDto_WhenTrackerExists()
+   {
+      // Arrange
+      var mockRepository = new Mock<IMongoRepository<Tracker>>();
+      var trackerId = ObjectId.GenerateNewId();
+      var tracker = new Tracker
+      {
+         Id = trackerId,
+         Search = "Test Search",
+         Url = "http://example.com",
+         EngineType = Domain.Enumerations.EngineType.Google,
+         Histories = new List<TrackerHistory>
+            {
+                new TrackerHistory { CreateDateTime = DateTime.UtcNow.AddDays(-1), Ranks = new List<int> { 1, 2 } },
+                new TrackerHistory { CreateDateTime = DateTime.UtcNow, Ranks = new List<int> { 3, 4 } }
+            }
+      };
+
+      mockRepository
+          .Setup(repo => repo.FindByIdAsync(trackerId, It.IsAny<CancellationToken>()))
+          .ReturnsAsync(tracker);
+
+      var service = new TrackerService(mockRepository.Object);
+
+      // Act
+      var result = await service.GetByKey(trackerId.ToUrlFromObjectId(), CancellationToken.None);
+
+      // Assert
+      Assert.NotNull(result);
+      Assert.Equal(trackerId.ToUrlFromObjectId(), result.Key);
+      Assert.Equal("Test Search", result.Search);
+      Assert.Equal("http://example.com", result.Url);
+      Assert.Equal(Domain.Enumerations.EngineType.Google, result.EngineType);
+      Assert.Equal(2, result.Histories.Count);
+      Assert.Equal(3, result.Histories.First().Ranks.First()); // Most recent history should be first
+   }
+
+   [Fact]
+   public async Task GetByKey_ShouldReturnNull_WhenTrackerDoesNotExist()
+   {
+      // Arrange
+      var mockRepository = new Mock<IMongoRepository<Tracker>>();
+      var trackerId = ObjectId.GenerateNewId();
+
+      mockRepository
+          .Setup(repo => repo.FindByIdAsync(trackerId, It.IsAny<CancellationToken>()))
+          .ReturnsAsync((Tracker?)null);
+
+      var service = new TrackerService(mockRepository.Object);
+
+      // Act
+      var result = await service.GetByKey(trackerId.ToUrlFromObjectId(), CancellationToken.None);
+
+      // Assert
+      Assert.Null(result);
    }
 }

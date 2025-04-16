@@ -1,4 +1,5 @@
 using InfoTrack.SEOTracker.Api.Dependencies;
+using InfoTrack.SEOTracker.Api.Middlewares;
 using InfoTrack.SEOTracker.Services.Dependencies;
 using Microsoft.OpenApi.Models;
 
@@ -16,6 +17,7 @@ builder.Services.AddSwaggerGen(opt =>
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
+app.UseMiddleware<ErrorLoggingMiddleware>();
 app.UseSwagger();
 app.UseSwaggerUI();
 

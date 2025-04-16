@@ -31,13 +31,12 @@ public class HtmlRenderService : IHtmlRenderService
 
 
       // need to approve you are not a robot
-      await page.WaitForTimeoutAsync(2000); // Simulate reading
-
-
-      while ((await page.ContentAsync()).Contains("detected unusual traffic"))
+      // chromium will be popup and ask you to approve
+      while (!page.IsClosed && (await page.ContentAsync()).Contains("detected unusual traffic"))
       {
-         await page.WaitForTimeoutAsync(2000);
+         await Task.Delay(2000);
       }
+
 
       string htmlContent = await page.ContentAsync();
       return htmlContent;
