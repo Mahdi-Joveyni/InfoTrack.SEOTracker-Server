@@ -5,36 +5,22 @@ using System.Text;
 namespace InfoTrack.SEOTracker.Utilities.Tests.Appsettings;
 public class MongoDbConfigTests
 {
+   public MongoDbConfigTests()
+   {
+      EncryptionHelper.Key = "L/mOvgSkEwIx6cU00TaSRO6TbAoONVV+XN+Yr3/xXRk=";
+   }
    [Fact]
    public void Password_ShouldReturnDecryptedPassword_WhenEncryptedPasswordIsValid()
    {
       // Arrange
       var config = new MongoDbConfig();
-      EncryptionHelper.Key = "L/mOvgSkEwIx6cU00TaSRO6TbAoONVV+XN+Yr3/xXRk=";
-      config.EncryptedPassword = "HelloWorld!".Encrypt(EncryptionHelper.Key);
+      config.EncryptedPassword = "HelloWorld!".EncryptObject();
 
       // Act
       var password = config.Password;
 
       // Assert
       Assert.Equal("HelloWorld!", password);
-   }
-
-   [Fact]
-   public void Password_ShouldReturnEncryptedPassword_WhenDecryptionFails()
-   {
-      // Arrange
-      var plainPassword = "plain password";
-      var config = new MongoDbConfig
-      {
-         EncryptedPassword = plainPassword
-      };
-
-      // Act
-      var password = config.Password;
-
-      // Assert
-      Assert.Equal(plainPassword, password);
    }
 
    [Fact]

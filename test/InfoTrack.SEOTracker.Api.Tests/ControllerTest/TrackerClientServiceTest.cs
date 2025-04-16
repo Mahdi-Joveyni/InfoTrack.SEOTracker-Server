@@ -13,7 +13,7 @@ public class TrackerClientServiceTest : ControllerTestBase<Program>, IClassFixtu
    }
 
    [Fact]
-   public async Task RoleClientService_HappyScenario()
+   public async Task TrackerClientService_HappyScenario()
    {
       // GetAll
       var getAllResult = await _trackerClientService.GetAllTracker(new Domain.DataTableRequest(), TestContext.Current.CancellationToken);

@@ -8,12 +8,16 @@ using System.Threading.Tasks;
 namespace InfoTrack.SEOTracker.Utilities.Tests.Helpers;
 public class EncryptionHelperTests
 {
+   public EncryptionHelperTests()
+   {
+      EncryptionHelper.Key = "L/mOvgSkEwIx6cU00TaSRO6TbAoONVV+XN+Yr3/xXRk=";
+   }
    [Fact]
    public void Encrypt_ShouldReturnEncryptedString()
    {
       // Arrange
       var plainText = "Hello World!";
-      EncryptionHelper.Key = "L/mOvgSkEwIx6cU00TaSRO6TbAoONVV+XN+Yr3/xXRk=";
+
       // Act
       var encryptedText = plainText.EncryptObject();
 
@@ -60,7 +64,6 @@ public class EncryptionHelperTests
    public void DecryptObject_ShouldReturnNull_WhenDecryptionFails()
    {
       // Arrange
-      EncryptionHelper.Key = Convert.ToBase64String(Encoding.UTF8.GetBytes("1234567890123456")); // 16-byte key
       var invalidEncryptedText = "InvalidEncryptedText";
 
       // Act
