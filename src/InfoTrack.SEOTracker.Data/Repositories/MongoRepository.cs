@@ -10,7 +10,6 @@ using MongoDB.Driver;
 using System.Linq.Expressions;
 
 namespace InfoTrack.SEOTracker.Data.Repositories;
-
 public class MongoRepository<TDocument> : IMongoRepository<TDocument> where TDocument : BaseModel
 {
    public bool DisableAudit { get; set; } = false;

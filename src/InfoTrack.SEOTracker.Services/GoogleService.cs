@@ -1,5 +1,6 @@
 ﻿using InfoTrack.SEOTracker.Data.Interfaces;
 using InfoTrack.SEOTracker.Data.Models;
+using InfoTrack.SEOTracker.Domain.DTO;
 using InfoTrack.SEOTracker.Domain.Enumerations;
 using InfoTrack.SEOTracker.Services.Interfaces;
 using InfoTrack.SEOTracker.Utilities.Appsettings;
@@ -25,8 +26,8 @@ public class GoogleService(IHtmlRenderService htmlRenderService, IOptions<AppSet
       List<int> result = FindRank(url, finalHtml);
 
       var tracker = await trackerRepository.FindOneAsync(x =>
-         x.Url.ToLower().Contains(url.ToLower(), StringComparison.CurrentCultureIgnoreCase)
-      && x.Search.ToLower().Contains(search.ToLower(), StringComparison.CurrentCultureIgnoreCase)
+         x.Url.Equals(url, StringComparison.CurrentCultureIgnoreCase)
+      && x.Search.Equals(search, StringComparison.CurrentCultureIgnoreCase)
       && x.EngineType == EngineType.Google, cancellationToken);
 
       if (tracker == null)

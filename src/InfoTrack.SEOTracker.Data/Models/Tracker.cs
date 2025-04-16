@@ -1,9 +1,11 @@
-﻿using InfoTrack.SEOTracker.Data.Models.Base;
+﻿using InfoTrack.SEOTracker.Data.Attributes;
+using InfoTrack.SEOTracker.Data.Models.Base;
 using InfoTrack.SEOTracker.Domain.DTO;
 using InfoTrack.SEOTracker.Domain.Enumerations;
 
 namespace InfoTrack.SEOTracker.Data.Models;
 
+[CollectionName("Trackers")]
 public class Tracker : BaseModel
 {
    public string Search { get; set; } = string.Empty;

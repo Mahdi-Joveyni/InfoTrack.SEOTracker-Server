@@ -23,6 +23,7 @@ public class MongoDbConfigTests
    [Fact]
    public void Password_ShouldReturnEncryptedPassword_WhenDecryptionFails()
    {
+      EncryptionHelper.Key = "L/mOvgSkEwIx6cU00TaSRO6TbAoONVV+XN+Yr3/xXRk=";
       // Arrange
       var plainPassword = "plain password";
       var config = new MongoDbConfig
@@ -80,7 +81,7 @@ public class MongoDbConfigTests
          Port = "27017",
          User = "testUser"
       };
-      EncryptionHelper.Key = Convert.ToBase64String(Encoding.UTF8.GetBytes("1234567890123456")); // 16-byte key
+      EncryptionHelper.Key = "L/mOvgSkEwIx6cU00TaSRO6TbAoONVV+XN+Yr3/xXRk=";
       config.EncryptedPassword = "testPassword".Encrypt(EncryptionHelper.Key);
 
       // Act
